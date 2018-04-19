@@ -1,2 +1,6 @@
 slackclient
 requests>=2.4.2
+argparse
+requests
+tempfile
+
