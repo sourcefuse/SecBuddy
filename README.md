@@ -16,7 +16,7 @@ This project uses burp suite API to perform operations such as :
 
 # Usage
 Example 
-`python main.py http://127.0.0.1  -t http://testasp.vulnweb.com -aP 8090` 
+`python main.py http://127.0.0.1  -t http://localhost -aP 8090` 
 
 Option:
  `proxy_url : http://127.0.0.1` (Change this to your server address if you are running burp on another machine)
