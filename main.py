@@ -7,6 +7,8 @@ import tempfile
 import requests
 import argparse
 
+
+
 def active_scan(api_port, target_url, proxy_url):
     """Send a URL to Burp to perform active scan"""
     try:
@@ -63,7 +65,6 @@ def main():
     target_url = args.target
     url_prefix = "ALL"
     rtype = "HTML"
-    resp =0
     bi = burpscanner.BurpApi(host)
 
     ## Report 
@@ -165,6 +166,17 @@ def main():
             sys.stdout.flush()
             return resp['scanPercentage']
 
+    ## show progress bar
+    def progress(count, total, status=''):
+        bar_len = 60
+        filled_len = int(round(bar_len * count / float(total)))
+
+        percents = round(100.0 * count / float(total), 1)
+        bar = '=' * filled_len + '-' * (bar_len - filled_len)
+
+        sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
+        sys.stdout.flush()        
+
 
     # Add target in burp scope
     burp_scope = bi.burp_scope(target_url)
@@ -174,11 +186,20 @@ def main():
 
     # Add to spider
     burp_spider = bi.burp_spider(target_url)
+    
+    total = 600
+    i = 0
+    while i < total:
+        progress(i, total, status='[+] Spidering the website')
+        time.sleep(0.5)  
+        i += 1
 
     # Start active scan
     active_scan(api_port, target_url, proxy_url)
 
-    while (int(resp)!=100):
+    resp =0
+
+    while (int(resp)!=1):
         resp = scan_status(api_port=args.api_port,
                                proxy_url=args.proxy_url)
         time.sleep(20)
@@ -194,6 +215,7 @@ def main():
 if __name__ == '__main__':
     #print(ASCII)
     main()
+
 
 
 
