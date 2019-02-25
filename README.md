@@ -24,4 +24,4 @@ Option:
 `-aP : API port` 
 
 # Bugs and Feature Requests
-Found issues? No worries please report issues at https://github.com/rayl15/SecBuddy
+Found issues? No worries please report issues at https://github.com/sourcefuse/SecBuddy
