@@ -1,10 +1,5 @@
 #!/usr/bin/env python
 
-__author__ = "Anand Tiwari (http://twitter.com/anandtiwarics)"
-__contributors__ = ["Anand Tiwari"]
-__status__ = "Production"
-__license__ = "MIT"
-
 import requests
 import json
 
